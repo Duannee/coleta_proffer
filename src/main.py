@@ -2,6 +2,7 @@ import json
 import logging
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
 
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -32,3 +33,6 @@ class Scraper:
         except FileNotFoundError:
             logging.error("JSON file not found")
             return []
+
+    def start_driver(self):
+        return webdriver.Chrome(service=self.service, options=self.chrome_options)
