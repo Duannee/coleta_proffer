@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
@@ -87,3 +88,12 @@ class Scraper:
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             results = list(executor.map(self.search_product, eans))
         return [result for result in results if result]
+
+    def salve_csv(self, data, file_name="data_collected.csv"):
+        df = pd.DataFrame(data)
+        df.to_csv(file_name, index=False, encoding="utf-8")
+        print(f"Data salved in {file_name}")
+
+    def execute(self, quantity=100):
+        collected_data = self.collect_data(quantity)
+        self.salve_csv(collected_data)
