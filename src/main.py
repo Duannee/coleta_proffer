@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 
+from concurrent.futures import ThreadPoolExecutor
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
@@ -79,3 +80,10 @@ class Scraper:
             return None
         finally:
             driver.quit()
+
+    def collect_data(self, quantity=100):
+        eans = self.ean_list[:quantity]
+        results = []
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            results = list(executor.map(self.search_product, eans))
+        return [result for result in results if result]
