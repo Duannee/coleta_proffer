@@ -93,3 +93,7 @@ class Scraper:
         df = pd.DataFrame(data)
         df.to_csv(file_name, index=False, encoding="utf-8")
         print(f"Data salved in {file_name}")
+
+    def execute(self, quantity=100):
+        collected_data = self.collect_data(quantity)
+        self.salve_csv(collected_data)
