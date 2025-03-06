@@ -20,16 +20,12 @@ logging.basicConfig(
 
 
 class Scraper:
-    def __init__(self, json_file="lista_eans.json", max_workers=5):
-        self.json_file = json_file
-        self.max_workers = max_workers
-        self.ean_list = self.load_data
-
-        self.chrome_options = Options()
-        self.chrome_options.add_argument("--headless")
-        self.chrome_options.add_argument("--disable-gpu")
-
-        self.service = Service(ChromeDriverManager().install())
+    def __init__(self):
+        self.driver = self._initialize_driver()
+        self.base_url = "https://precodahora.ba.gov.br/produtos/"
+        self.cities = {"Salvador": "2927408", "Feira de Santana": "2910800"}
+        self.state_code = "29"
+        self.results = []
 
     def load_data(self):
         try:
