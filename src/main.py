@@ -40,6 +40,10 @@ class Scraper:
         with open(json_ean_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
+    def load_description_json(self, json_description_file="lista_descricao.json"):
+        with open(json_description_file, "r", encoding="utf-8") as file:
+            return json.load(file)
+
     def start_driver(self):
         return webdriver.Chrome(service=self.service, options=self.chrome_options)
 
