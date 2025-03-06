@@ -98,12 +98,16 @@ class Scraper:
             )
             return None
 
-    def collect_data(self, quantity=100):
-        eans = self.ean_list[:quantity]
-        results = []
-        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            results = list(executor.map(self.search_product, eans))
-        return [result for result in results if result]
+    def collect_data(self, ean_list, description_list):
+        for ean, description in zip(ean_list, description_list):
+            for city_name, city_code in self.cities.items():
+                print(f"Fetching data for EAN {ean} in {city_name}")
+                self.search_product(ean, city_code)
+                product_data = self.extract_product_data(ean, description, city_code)
+                if product_data:
+                    self.results.append(product_data)
+                time.sleep(1)
+        print(f"Total results collected: {len(self.results)}")
 
     def salve_csv(self, data, file_name="data_collected.csv"):
         df = pd.DataFrame(data)
