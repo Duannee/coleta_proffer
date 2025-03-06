@@ -44,9 +44,6 @@ class Scraper:
         with open(json_description_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
-    def start_driver(self):
-        return webdriver.Chrome(service=self.service, options=self.chrome_options)
-
     def search_product(self, ean):
         driver = self.start_driver
         url = "https://precodahora.ba.gov.br/"
