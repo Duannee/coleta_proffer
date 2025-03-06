@@ -116,3 +116,17 @@ class Scraper:
 
     def close_driver(self):
         self.driver.quit()
+
+
+if __name__ == "__main__":
+    scraper = Scraper()
+
+    try:
+        ean_list = scraper.load_ean_json("lista_eans.json")
+        description_list = scraper.load_description_json("lista_descricao.json")
+
+        scraper.collect_data(ean_list, description_list)
+
+        scraper.save_csv("data_collected.csv")
+    finally:
+        scraper.close_driver()
