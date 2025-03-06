@@ -113,3 +113,6 @@ class Scraper:
         df = pd.DataFrame(self.results)
         df.to_csv(file_name, index=False, encoding="utf-8")
         print(f"Data saved to {file_name}")
+
+    def close_driver(self):
+        self.driver.quit()
