@@ -36,14 +36,9 @@ class Scraper:
         driver = webdriver.Chrome(service=service, options=chrome_options)
         return driver
 
-    def load_data(self):
-        try:
-            with open(self.json_file, "r") as f:
-                ean_list = json.load(f)
-            return ean_list
-        except FileNotFoundError:
-            logging.error("JSON file not found")
-            return []
+    def load_ean_json(self, json_ean_file="lista_eans.json"):
+        with open(json_ean_file, "r", encoding="utf-8") as file:
+            return json.load(file)
 
     def start_driver(self):
         return webdriver.Chrome(service=self.service, options=self.chrome_options)
