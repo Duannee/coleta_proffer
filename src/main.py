@@ -44,10 +44,8 @@ class Scraper:
         with open(json_description_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
-    def search_product(self, ean):
-        driver = self.start_driver
-        url = "https://precodahora.ba.gov.br/"
-        driver.get(url)
+    def search_product(self, ean, city_code):
+        self.driver.get(self.base_url)
         time.sleep(2)
 
         try:
