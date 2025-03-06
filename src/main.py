@@ -109,10 +109,10 @@ class Scraper:
                 time.sleep(1)
         print(f"Total results collected: {len(self.results)}")
 
-    def salve_csv(self, data, file_name="data_collected.csv"):
-        df = pd.DataFrame(data)
+    def save_csv(self, file_name="data_collected.csv"):
+        df = pd.DataFrame(self.results)
         df.to_csv(file_name, index=False, encoding="utf-8")
-        print(f"Data salved in {file_name}")
+        print(f"Data saved to {file_name}")
 
     def execute(self, quantity=100):
         collected_data = self.collect_data(quantity)
