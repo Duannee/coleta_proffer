@@ -7,10 +7,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+from datetime import datetime
 
 from concurrent.futures import ThreadPoolExecutor
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 logging.basicConfig(
     filename="scraping.log",
@@ -48,38 +51,52 @@ class Scraper:
         self.driver.get(self.base_url)
         time.sleep(2)
 
+    def extract_product_data(self, ean, description, city_code):
         try:
-            search_box = driver.find_element(By.XPATH, "//input[@id='fake-sbar']")
+            search_box = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[@id='top-sbar']"))
+            )
             search_box.clear()
             search_box.send_keys(ean)
             search_box.send_keys(Keys.RETURN)
             time.sleep(3)
 
-            description = driver.find_element(
-                By.XPATH, "//div[@style='font-size:18px;']/strong"
-            ).text
-            price = driver.find_element(By.XPATH, "//span[@class='search-gtin']").text
-            collection_date = driver.find_element(
-                By.XPATH, "//i[@class='fa fa-calendar']"
-            ).text
-            establishment = driver.find_element(
-                By.XPATH, "//i[@class='fa fa-building']"
-            ).text
+            with open("page_source.html", "w", encoding="utf-8") as f:
+                f.write(self.driver.page_source)
+            self.driver.save_screenshot("screenshot.png")
+
+            no_results = self.driver.find_elements(
+                By.XPATH, "//div[contains(text(), 'No results found')]"
+            )
+            if no_results:
+                print(f"No results found for EAN {ean} in city {city_code}.")
+                return None
+
+            price = self.driver.find_element(
+                By.XPATH,
+                "//div[@style='font-size:42px;font-weight:bold; color: #000;']",
+            ).text.strip()
+            establishment = self.driver.find_element(
+                By.XPATH, "//div[i[@class='fa fa-building']]"
+            ).text.strip()
 
             data = {
                 "ean": ean,
                 "description": description,
                 "price": price,
-                "collection_date": collection_date,
+                "collection_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "establishment": establishment,
             }
-            logging.info(f"Success: {ean} - {description} - {price}")
+            print(f"Data extracted for EAN {ean}: {data}")  # Debugging
             return data
-        except (NoSuchElementException, TimeoutException) as e:
-            logging.error(f"Error fetching {ean}: {e}")
+        except NoSuchElementException:
+            print(f"Product with EAN {ean} not found in city {city_code}.")
             return None
-        finally:
-            driver.quit()
+        except TimeoutException:
+            print(
+                f"Timeout while searching for product with EAN {ean} in city {city_code}."
+            )
+            return None
 
     def collect_data(self, quantity=100):
         eans = self.ean_list[:quantity]
