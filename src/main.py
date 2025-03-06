@@ -27,6 +27,15 @@ class Scraper:
         self.state_code = "29"
         self.results = []
 
+    def _initialize_driver(self):
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--no-sandbox")
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        return driver
+
     def load_data(self):
         try:
             with open(self.json_file, "r") as f:
