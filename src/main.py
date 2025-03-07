@@ -85,15 +85,14 @@ class Scraper:
 
     def solve_recaptcha(self):
         try:
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located(
-                    (By.XPATH, "//iframe[@title='reCAPTCHA']")
-                )
-            )
-            recaptcha_iframe = self.driver.find_element(
+            recaptcha_iframes = self.driver.find_element(
                 By.XPATH, "//iframe[@title='reCAPTCHA']"
             )
+            if not recaptcha_iframes:
+                print("No reCAPTCHA found, following normal flow...")
+                return
 
+            recaptcha_iframe = recaptcha_iframes[0]
             self.driver.switch_to.frame(recaptcha_iframe)
 
             checkbox = WebDriverWait(self.driver, 10).until(
@@ -106,14 +105,28 @@ class Scraper:
 
             self.driver.switch_to.default_content()
 
-            WebDriverWait(self.driver, 10).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located(
                     (By.XPATH, "//div[@class='recaptcha-checkbox-checkmark']")
                 )
             )
             print("reCAPTCHA solved")
-        except TimeoutException:
-            print("Timed out while trying to solve reCAPTCHA")
+            try:
+                submit_button = WebDriverWait(self.driver, 5).until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, "//button[contains(text(), 'Enviar')]")
+                    )
+                )
+                submit_button.click()
+                print("Clicked the submit button after reCAPTCHA!")
+            except TimeoutException:
+                print(
+                    "Submit button did not appear even after solving the reCAPTCHA, proceeding normally..."
+                )
+        except (TimeoutException, NoSuchElementException):
+            print(
+                "No reCAPTCHA detected or timeout when trying to solve it, following the normal flow..."
+            )
 
     def search_product(self, ean, city_code):
         self.driver.get(self.base_url)
@@ -130,14 +143,6 @@ class Scraper:
             time.sleep(3)
 
             self.solve_recaptcha()
-
-            submit_button = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable(
-                    (By.XPATH, "//button[contains(text(), 'Enviar')]")
-                )
-            )
-            submit_button.click()
-            print("Clicked the submit button after reCAPTCHA!")
 
             with open("page_source.html", "w", encoding="utf-8") as f:
                 f.write(self.driver.page_source)
@@ -204,15 +209,38 @@ class Scraper:
 if __name__ == "__main__":
     scraper = Scraper()
 
+    # try:
+    #     ean_list = scraper.load_ean_json("lista_eans.json")
+    #     description_list = scraper.load_description_json("lista_descricao.json")
+
+    #     scraper.collect_data(ean_list, description_list)
+
+    #     scraper.save_csv("data_collected.csv")
+    # finally:
+    #     scraper.close_driver()
+
     try:
-        ean_list = scraper.load_ean_json("lista_eans.json")
-        description_list = scraper.load_description_json("lista_descricao.json")
+        # Defina um EAN e uma descrição para teste manualmente
+        test_ean = "7896422516945"  # Substitua pelo EAN que deseja testar
+        test_description = "Test description"  # Descrição do produto correspondente
 
-        scraper.collect_data(ean_list, description_list)
+        # Escolha uma cidade para testar
+        test_city_name = "Salvador"
+        test_city_code = scraper.cities[test_city_name]
 
-        scraper.save_csv("data_collected.csv")
+        print(f"Testando coleta de dados para EAN {test_ean} em {test_city_name}...")
+
+        # Executa apenas para esse EAN e cidade
+        scraper.search_product(test_ean, test_city_code)
+        product_data = scraper.extract_product_data(
+            test_ean, test_description, test_city_code
+        )
+
+        if product_data:
+            print("\nDados extraídos com sucesso:")
+            print(json.dumps(product_data, indent=4, ensure_ascii=False))
+        else:
+            print("\nNenhum dado foi extraído para esse EAN.")
+
     finally:
         scraper.close_driver()
-
-    if __name__ == "__main__":
-        scraper = Scraper()
