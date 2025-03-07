@@ -15,3 +15,12 @@ class WebElementWrapper:
         return WebDriverWait(self.driver, self.timeout).until(
             EC.presence_of_element_located((self.by, self.locator))
         )
+
+    def get_element(self):
+        try:
+            self.element.is_displayed()
+            return self.element
+        except StaleElementReferenceException:
+            print("Obsolete element, relocating...")
+            self.element = self._find_element()
+            return self.element
