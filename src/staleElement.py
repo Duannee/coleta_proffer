@@ -24,3 +24,6 @@ class WebElementWrapper:
             print("Obsolete element, relocating...")
             self.element = self._find_element()
             return self.element
+
+    def click(self):
+        self.get_element().click()
