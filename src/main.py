@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+import requests
 import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -63,6 +64,23 @@ class Scraper:
                 return None
         except (NoSuchElementException, TimeoutException):
             print("CNPJ not found")
+            return None
+
+    def fetch_cnpj_data(self, cnpj):
+        url = f"https://publica.cnpj.ws/cnpj/{cnpj}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+        }
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                try:
+                    return response.json()
+                except ValueError:
+                    print("Error: API response is not a valid JSON")
+                    return None
+        except requests.exceptions.RequestException as e:
+            print(f"Error accessing CNPJ API: {e}")
             return None
 
     def solve_recaptcha(self):
