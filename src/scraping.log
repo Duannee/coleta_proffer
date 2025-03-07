@@ -7961,3 +7961,128 @@ Stacktrace:
 2025-03-06 17:04:50,584 - INFO - Get LATEST chromedriver version for google-chrome
 2025-03-06 17:04:50,644 - INFO - Get LATEST chromedriver version for google-chrome
 2025-03-06 17:04:50,699 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:42:02,413 - INFO - ====== WebDriver manager ======
+2025-03-07 14:42:03,076 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:03,184 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:03,232 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:03,370 - INFO - WebDriver version 134.0.6998.35 selected
+2025-03-07 14:42:03,372 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win32/chromedriver-win32.zip
+2025-03-07 14:42:03,373 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win32/chromedriver-win32.zip
+2025-03-07 14:42:03,504 - INFO - Driver downloading response is 200
+2025-03-07 14:42:03,727 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:04,027 - INFO - Driver has been saved in cache [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35]
+2025-03-07 14:42:49,180 - INFO - ====== WebDriver manager ======
+2025-03-07 14:42:49,739 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:49,810 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:42:49,876 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:45:16,208 - INFO - ====== WebDriver manager ======
+2025-03-07 14:45:16,755 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:45:16,813 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:45:16,868 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:46:45,048 - INFO - ====== WebDriver manager ======
+2025-03-07 14:46:45,593 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:46:45,652 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:46:45,706 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:49:20,880 - INFO - ====== WebDriver manager ======
+2025-03-07 14:49:21,419 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:49:21,475 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:49:21,532 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:50:09,460 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'Foi forçado o cancelamento de uma conexão existente pelo host remoto', None, 10054, None)': /session/cb9330646abcc669ac2cc0612e37693d
+2025-03-07 14:50:13,493 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CA7205E490>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/cb9330646abcc669ac2cc0612e37693d
+2025-03-07 14:50:17,538 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CA7205E0D0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/cb9330646abcc669ac2cc0612e37693d
+2025-03-07 14:52:28,783 - INFO - ====== WebDriver manager ======
+2025-03-07 14:52:29,328 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:52:29,396 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:52:29,458 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:52:30,508 - INFO - ====== WebDriver manager ======
+2025-03-07 14:52:31,046 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:52:31,098 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:52:31,148 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:53:14,905 - INFO - ====== WebDriver manager ======
+2025-03-07 14:53:15,445 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:53:15,631 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:53:15,685 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:53:16,661 - INFO - ====== WebDriver manager ======
+2025-03-07 14:53:17,204 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:53:17,259 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:53:17,315 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:54:00,255 - INFO - ====== WebDriver manager ======
+2025-03-07 14:54:00,792 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:00,852 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:00,910 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:54:01,892 - INFO - ====== WebDriver manager ======
+2025-03-07 14:54:02,425 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:02,475 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:02,533 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:54:56,453 - INFO - ====== WebDriver manager ======
+2025-03-07 14:54:57,016 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:57,073 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:57,138 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 14:54:58,176 - INFO - ====== WebDriver manager ======
+2025-03-07 14:54:58,720 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:58,803 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 14:54:58,868 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 15:54:21,330 - INFO - ====== WebDriver manager ======
+2025-03-07 15:54:21,939 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 15:54:22,019 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 15:54:22,074 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 15:59:21,953 - INFO - ====== WebDriver manager ======
+2025-03-07 15:59:22,528 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 15:59:22,585 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 15:59:22,630 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:00:51,720 - INFO - ====== WebDriver manager ======
+2025-03-07 16:00:52,269 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:00:52,324 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:00:52,381 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:01:45,653 - INFO - ====== WebDriver manager ======
+2025-03-07 16:01:46,201 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:01:46,258 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:01:46,316 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:02:36,654 - INFO - ====== WebDriver manager ======
+2025-03-07 16:02:37,208 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:02:37,263 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:02:37,316 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:04:58,579 - INFO - ====== WebDriver manager ======
+2025-03-07 16:04:59,154 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:04:59,234 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:04:59,291 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:12:07,677 - INFO - ====== WebDriver manager ======
+2025-03-07 16:12:08,214 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:12:08,266 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:12:08,320 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 16:57:15,709 - INFO - ====== WebDriver manager ======
+2025-03-07 16:57:16,350 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:57:16,424 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 16:57:16,473 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:02:24,779 - INFO - ====== WebDriver manager ======
+2025-03-07 17:02:25,328 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:02:25,383 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:02:25,445 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:03:16,810 - INFO - ====== WebDriver manager ======
+2025-03-07 17:03:17,408 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:03:17,466 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:03:17,524 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:09:11,013 - INFO - ====== WebDriver manager ======
+2025-03-07 17:09:11,556 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:09:11,628 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:09:11,683 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:22:45,001 - INFO - ====== WebDriver manager ======
+2025-03-07 17:22:45,552 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:22:45,613 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:22:45,667 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:26:38,757 - INFO - ====== WebDriver manager ======
+2025-03-07 17:26:39,309 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:26:39,366 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:26:39,417 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:29:46,627 - INFO - ====== WebDriver manager ======
+2025-03-07 17:29:47,179 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:29:47,238 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:29:47,291 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 17:42:20,724 - INFO - ====== WebDriver manager ======
+2025-03-07 17:42:21,296 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:42:21,359 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 17:42:21,413 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-07 18:15:13,290 - INFO - ====== WebDriver manager ======
+2025-03-07 18:15:13,880 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 18:15:13,956 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-07 18:15:14,033 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
