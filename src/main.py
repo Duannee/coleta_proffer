@@ -33,7 +33,7 @@ class Scraper:
 
     def _initialize_driver(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
         service = Service(ChromeDriverManager().install())
@@ -48,6 +48,38 @@ class Scraper:
         with open(json_description_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
+    def solve_recaptcha(self):
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//iframe[@title='reCAPTCHA']")
+                )
+            )
+            recaptcha_iframe = self.driver.find_element(
+                By.XPATH, "//iframe[@title='reCAPTCHA']"
+            )
+
+            self.driver.switch_to.frame(recaptcha_iframe)
+
+            checkbox = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//div[@class='recaptcha-checkbox-border']")
+                )
+            )
+            checkbox.click()
+            print("Clicked on reCAPTCHA")
+
+            self.driver.switch_to.default_content()
+
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div[@class='recaptcha-checkbox-checkmark']")
+                )
+            )
+            print("reCAPTCHA solved")
+        except TimeoutException:
+            print("Timed out while trying to solve reCAPTCHA")
+
     def search_product(self, ean, city_code):
         self.driver.get(self.base_url)
         time.sleep(2)
@@ -57,10 +89,12 @@ class Scraper:
             search_box = WebElementWrapper(
                 self.driver, By.XPATH, "//input[@id='top-sbar']"
             )
-            search_box.get_element.clear()
+            search_box.get_element().clear()
             search_box.send_keys(ean)
             search_box.send_keys(Keys.RETURN)
             time.sleep(3)
+
+            self.solve_recaptcha()
 
             with open("page_source.html", "w", encoding="utf-8") as f:
                 f.write(self.driver.page_source)
@@ -123,12 +157,41 @@ class Scraper:
 if __name__ == "__main__":
     scraper = Scraper()
 
+    #     try:
+    #         ean_list = scraper.load_ean_json("lista_eans.json")
+    #         description_list = scraper.load_description_json("lista_descricao.json")
+
+    #         scraper.collect_data(ean_list, description_list)
+
+    #         scraper.save_csv("data_collected.csv")
+    #     finally:
+    #         scraper.close_driver()
+
+    # if __name__ == "__main__":
+    #     scraper = Scraper()
+
     try:
-        ean_list = scraper.load_ean_json("lista_eans.json")
-        description_list = scraper.load_description_json("lista_descricao.json")
+        # Defina um EAN e uma descrição para teste manualmente
+        test_ean = "7899824400737"  # Substitua pelo EAN que deseja testar
+        test_description = "Test description"  # Descrição do produto correspondente
 
-        scraper.collect_data(ean_list, description_list)
+        # Escolha uma cidade para testar
+        test_city_name = "Salvador"
+        test_city_code = scraper.cities[test_city_name]
 
-        scraper.save_csv("data_collected.csv")
+        print(f"Testando coleta de dados para EAN {test_ean} em {test_city_name}...")
+
+        # Executa apenas para esse EAN e cidade
+        scraper.search_product(test_ean, test_city_code)
+        product_data = scraper.extract_product_data(
+            test_ean, test_description, test_city_code
+        )
+
+        if product_data:
+            print("\nDados extraídos com sucesso:")
+            print(json.dumps(product_data, indent=4, ensure_ascii=False))
+        else:
+            print("\nNenhum dado foi extraído para esse EAN.")
+
     finally:
         scraper.close_driver()
