@@ -122,6 +122,8 @@ class Scraper:
                 "price": price,
                 "collection_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "establishment": establishment,
+                "city_code": city_code,
+                "state_code": self.state_code,
             }
             print(f"Data extracted for EAN {ean}: {data}")  # Debugging
             return data
@@ -157,41 +159,15 @@ class Scraper:
 if __name__ == "__main__":
     scraper = Scraper()
 
-    #     try:
-    #         ean_list = scraper.load_ean_json("lista_eans.json")
-    #         description_list = scraper.load_description_json("lista_descricao.json")
-
-    #         scraper.collect_data(ean_list, description_list)
-
-    #         scraper.save_csv("data_collected.csv")
-    #     finally:
-    #         scraper.close_driver()
-
-    # if __name__ == "__main__":
-    #     scraper = Scraper()
-
     try:
-        # Defina um EAN e uma descrição para teste manualmente
-        test_ean = "7899824400737"  # Substitua pelo EAN que deseja testar
-        test_description = "Test description"  # Descrição do produto correspondente
+        ean_list = scraper.load_ean_json("lista_eans.json")
+        description_list = scraper.load_description_json("lista_descricao.json")
 
-        # Escolha uma cidade para testar
-        test_city_name = "Salvador"
-        test_city_code = scraper.cities[test_city_name]
+        scraper.collect_data(ean_list, description_list)
 
-        print(f"Testando coleta de dados para EAN {test_ean} em {test_city_name}...")
-
-        # Executa apenas para esse EAN e cidade
-        scraper.search_product(test_ean, test_city_code)
-        product_data = scraper.extract_product_data(
-            test_ean, test_description, test_city_code
-        )
-
-        if product_data:
-            print("\nDados extraídos com sucesso:")
-            print(json.dumps(product_data, indent=4, ensure_ascii=False))
-        else:
-            print("\nNenhum dado foi extraído para esse EAN.")
-
+        scraper.save_csv("data_collected.csv")
     finally:
         scraper.close_driver()
+
+    if __name__ == "__main__":
+        scraper = Scraper()
