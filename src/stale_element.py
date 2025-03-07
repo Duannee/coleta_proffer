@@ -30,3 +30,6 @@ class WebElementWrapper:
 
     def send_keys(self, keys):
         self.get_element().send_keys(keys)
+
+    def text(self):
+        return self.get_element().text
