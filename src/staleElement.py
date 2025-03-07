@@ -1,4 +1,6 @@
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class WebElementWrapper:
@@ -8,3 +10,8 @@ class WebElementWrapper:
         self.locator = locator
         self.timeout = timeout
         self.element = self._find_element()
+
+    def _find_element(self):
+        return WebDriverWait(self.driver, self.timeout).until(
+            EC.presence_of_element_located((self.by, self.locator))
+        )
