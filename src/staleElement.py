@@ -27,3 +27,6 @@ class WebElementWrapper:
 
     def click(self):
         self.get_element().click()
+
+    def send_keys(self, keys):
+        self.get_element().send_keys(keys)
