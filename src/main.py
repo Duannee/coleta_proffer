@@ -48,6 +48,23 @@ class Scraper:
         with open(json_description_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
+    def extract_cnpj(self):
+        try:
+            cnpj_element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//button[@id='hbtn_1-0']"))
+            )
+            cnpj = cnpj_element.get_attribute("data-cnpj")
+
+            if cnpj:
+                print(f"CNPJ found: {cnpj}")
+                return cnpj
+            else:
+                print("CNPJ attribute found but is empty")
+                return None
+        except (NoSuchElementException, TimeoutException):
+            print("CNPJ not found")
+            return None
+
     def solve_recaptcha(self):
         try:
             WebDriverWait(self.driver, 10).until(
