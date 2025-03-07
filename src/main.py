@@ -96,6 +96,14 @@ class Scraper:
 
             self.solve_recaptcha()
 
+            submit_button = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//button[contains(text(), 'Enviar')]")
+                )
+            )
+            submit_button.click()
+            print("Clicked the submit button after reCAPTCHA!")
+
             with open("page_source.html", "w", encoding="utf-8") as f:
                 f.write(self.driver.page_source)
             self.driver.save_screenshot("screenshot.png")
@@ -125,8 +133,10 @@ class Scraper:
                 "city_code": city_code,
                 "state_code": self.state_code,
             }
-            print(f"Data extracted for EAN {ean}: {data}")  # Debugging
+            print(f"Data extracted for EAN {ean}: {data}")
             return data
+        except TimeoutException:
+            print("Timed out while trying to click the submit button!")
         except NoSuchElementException:
             print(f"Product with EAN {ean} not found in city {city_code}.")
             return None
