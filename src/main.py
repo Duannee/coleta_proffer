@@ -14,6 +14,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from stale_element import WebElementWrapper
 
 logging.basicConfig(
     filename="scraping.log",
@@ -53,10 +54,10 @@ class Scraper:
 
     def extract_product_data(self, ean, description, city_code):
         try:
-            search_box = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, "//input[@id='top-sbar']"))
+            search_box = WebElementWrapper(
+                self.driver, By.XPATH, "//input[@id='top-sbar']"
             )
-            search_box.clear()
+            search_box.get_element.clear()
             search_box.send_keys(ean)
             search_box.send_keys(Keys.RETURN)
             time.sleep(3)
@@ -72,13 +73,14 @@ class Scraper:
                 print(f"No results found for EAN {ean} in city {city_code}.")
                 return None
 
-            price = self.driver.find_element(
+            price = WebElementWrapper(
+                self.driver,
                 By.XPATH,
                 "//div[@style='font-size:42px;font-weight:bold; color: #000;']",
-            ).text.strip()
-            establishment = self.driver.find_element(
-                By.XPATH, "//div[i[@class='fa fa-building']]"
-            ).text.strip()
+            ).text()
+            establishment = WebElementWrapper(
+                self.driver, By.XPATH, "//div[i[@class='fa fa-building']]"
+            ).text()
 
             data = {
                 "ean": ean,
