@@ -164,12 +164,27 @@ class Scraper:
                 self.driver, By.XPATH, "//div[i[@class='fa fa-building']]"
             ).text()
 
+            cnpj = self.extract_cnpj()
+
+            cnpj_data = self.fetch_cnpj_data(cnpj) if cnpj else None
+            if cnpj_data:
+                estabelecimento = cnpj_data.get("estabelecimento", {})
+                neighborhood = estabelecimento.get("bairro", "N/A")
+                city = estabelecimento.get("cidade", {}).get("nome", "N/A")
+                uf = estabelecimento.get("estado", {}).get("sigla", "N/A")
+            else:
+                neighborhood, city, uf = "N/A", "N/A", "N/A"
+
             data = {
                 "ean": ean,
                 "description": description,
                 "price": price,
                 "collection_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "establishment": establishment,
+                "cidade": city,
+                "cnpj": cnpj,
+                "bairro": neighborhood,
+                "uf": uf,
                 "city_code": city_code,
                 "state_code": self.state_code,
             }
