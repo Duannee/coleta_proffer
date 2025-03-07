@@ -32,6 +32,11 @@ class Scraper:
         self.state_code = "29"
         self.results = []
 
+        self.cnpj_requests_count = 0
+        self.last_cnpj_request_time = time.time()
+
+        self.cnpj_cache = {}
+
     def _initialize_driver(self):
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
@@ -49,6 +54,45 @@ class Scraper:
         with open(json_description_file, "r", encoding="utf-8") as file:
             return json.load(file)
 
+    def fetch_cnpj_data(self, cnpj):
+        if not cnpj:
+            return None
+
+        if cnpj in self.cnpj_cache:
+            print(f"CNPJ {cnpj} found in cache")
+            return self.cnpj_cache[cnpj]
+
+        url = f"https://publica.cnpj.ws/cnpj/{cnpj}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+        }
+
+        current_time = time.time()
+        elapsed_time = current_time - self.last_cnpj_request_time
+
+        if self.cnpj_requests_count >= 3:
+            wait_time = max(60 - elapsed_time, 0)
+            print(f"Waiting {wait_time:.2f} seconds to respect the CNPJ API...")
+            time.sleep(wait_time)
+            self.cnpj_requests_count = 0
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                self.cnpj_cache[cnpj] = data
+                self.cnpj_requests_count += 1
+                self.last_cnpj_request_time = time.time()
+                return data
+            elif response.status_code == 404:
+                print(f"CNPJ {cnpj} not found in the API")
+                return None
+            else:
+                print(f"Error accessing CNPJ API {cnpj}: {response.status_code}")
+                return None
+        except requests.exceptions.RequestException as e:
+            print(f"Connection error when querying CNPJ {cnpj}: {e}")
+            return None
+
     def extract_cnpj(self):
         try:
             cnpj_element = WebDriverWait(self.driver, 10).until(
@@ -64,23 +108,6 @@ class Scraper:
                 return None
         except (NoSuchElementException, TimeoutException):
             print("CNPJ not found")
-            return None
-
-    def fetch_cnpj_data(self, cnpj):
-        url = f"https://publica.cnpj.ws/cnpj/{cnpj}"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-        }
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            if response.status_code == 200:
-                try:
-                    return response.json()
-                except ValueError:
-                    print("Error: API response is not a valid JSON")
-                    return None
-        except requests.exceptions.RequestException as e:
-            print(f"Error accessing CNPJ API: {e}")
             return None
 
     def solve_recaptcha(self):
