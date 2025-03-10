@@ -42,6 +42,7 @@ class Scraper:
 
         self.cnpj_requests_count = 0
         self.last_cnpj_request_time = time.time()
+        self.cnpj_lock = threading.Lock()
 
         self.cnpj_cache = {}
 
