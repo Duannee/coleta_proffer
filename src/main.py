@@ -34,6 +34,10 @@ USER_AGENTS = [
 ]
 
 
+def get_random_headers():
+    return {"User-Agent": random.choice(USER_AGENTS)}
+
+
 class Scraper:
     def __init__(self):
         self.driver = self._initialize_driver()
