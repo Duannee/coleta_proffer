@@ -14,10 +14,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from datetime import datetime
-from queue import Queue
-from threading import Thread
 import threading
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -261,14 +259,24 @@ class Scraper:
         return None
 
     def collect_data(self, ean_list, description_list):
-        for ean, description in zip(ean_list, description_list):
-            for city_name, city_code in self.cities.items():
-                print(f"Fetching data for EAN {ean} in {city_name}")
-                self.search_product(ean, city_code)
-                product_data = self.extract_product_data(ean, description, city_code)
-                if product_data:
-                    self.results.append(product_data)
-                time.sleep(1)
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = []
+            for ean, description in zip(ean_list, description_list):
+                for city_name, city_code in self.cities.items():
+                    print(f"Fetching data for EAN {ean} in {city_name}")
+                    futures.append(
+                        executor.submit(
+                            self.collect_data_for_city,
+                            ean,
+                            description,
+                            city_name,
+                            city_code,
+                        )
+                    )
+                for future in as_completed(futures):
+                    result = future.result()
+                    if result:
+                        self.results.append(result)
         print(f"Total results collected: {len(self.results)}")
 
     def save_csv(self, file_name="data_collected.csv"):
