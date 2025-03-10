@@ -53,7 +53,9 @@ class Scraper:
         self.cnpj_cache = {}
 
         self.session = requests.Session()
+        self.session.headers.update(get_random_headers())
         self.cnpj_queue = Queue()
+        self.start_cnpj_worker()
 
     def _initialize_driver(self):
         chrome_options = Options()
