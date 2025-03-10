@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from datetime import datetime
 from queue import Queue
+from threading import Thread
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -65,6 +66,13 @@ class Scraper:
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=chrome_options)
         return driver
+
+    def process_cnpj_queue(self):
+        while True:
+            cnpj, callback = self.cnpj_queue.get()
+            data = self.fetch_cnpj_data(cnpj)
+            callback(data)
+            time.sleep(20)
 
     def load_ean_json(self, json_ean_file="lista_eans.json"):
         with open(json_ean_file, "r", encoding="utf-8") as file:
