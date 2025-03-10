@@ -6,7 +6,7 @@
 ## Índice
 
 - [Introdução](#introdução)
-- [Arquitetura e Tecnologias Utilizadas](#arquitetura-tecnologias-utilizadas)
+- [Arquitetura e Tecnologias Utilizadas](#arquitetura-e-tecnologias-utilizadas)
 - [Instruções para Execução](#intruções-para-execução)
 - [Coleta e Processamento dos Dados](#coleta-e-processamento-dos-dados)
 - [Desafios Encontrados e Soluções](#desafios-encontrados-e-soluções)
