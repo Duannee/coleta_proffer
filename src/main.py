@@ -201,6 +201,8 @@ class Scraper:
 
     def extract_product_data(self, ean, description, city_code):
         try:
+            self.driver.get(self.base_url)
+            time.sleep(random.uniform(1.5, 3))
             search_box = WebElementWrapper(
                 self.driver, By.XPATH, "//input[@id='top-sbar']"
             )
