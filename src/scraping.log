@@ -8247,3 +8247,63 @@ Stacktrace:
 2025-03-07 21:53:00,615 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'Foi forçado o cancelamento de uma conexão existente pelo host remoto', None, 10054, None)': /session/5e67b26bcf573607a700c8abc5b952d1
 2025-03-07 21:53:04,654 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000145921F3B10>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/5e67b26bcf573607a700c8abc5b952d1
 2025-03-07 21:53:08,689 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000145921F2E90>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/5e67b26bcf573607a700c8abc5b952d1
+2025-03-09 17:48:52,157 - INFO - ====== WebDriver manager ======
+2025-03-09 17:48:52,773 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:48:52,861 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:48:52,915 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:48:53,056 - INFO - WebDriver version 134.0.6998.35 selected
+2025-03-09 17:48:53,058 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win32/chromedriver-win32.zip
+2025-03-09 17:48:53,058 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.35/win32/chromedriver-win32.zip
+2025-03-09 17:48:53,217 - INFO - Driver downloading response is 200
+2025-03-09 17:48:53,478 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:48:53,798 - INFO - Driver has been saved in cache [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35]
+2025-03-09 17:52:09,829 - INFO - ====== WebDriver manager ======
+2025-03-09 17:52:10,513 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:52:10,575 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:52:10,628 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 17:58:41,610 - INFO - ====== WebDriver manager ======
+2025-03-09 17:58:42,150 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:58:42,201 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 17:58:42,261 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:05:24,054 - INFO - ====== WebDriver manager ======
+2025-03-09 18:05:24,613 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:05:24,663 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:05:24,726 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:17:12,347 - INFO - ====== WebDriver manager ======
+2025-03-09 18:17:12,902 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:17:12,958 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:17:13,013 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:20:00,859 - INFO - ====== WebDriver manager ======
+2025-03-09 18:20:01,420 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:20:01,483 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:20:01,537 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:21:43,927 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FED1E50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8/source
+2025-03-09 18:21:47,968 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FED2710>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8/source
+2025-03-09 18:21:52,030 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FF15220>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8/source
+2025-03-09 18:22:00,105 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FECD250>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8
+2025-03-09 18:22:04,137 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FEA68B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8
+2025-03-09 18:22:08,183 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F77FEA6BE0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/aa16d24c5a740c46cdb1bc631c6e30b8
+2025-03-09 18:28:59,423 - INFO - ====== WebDriver manager ======
+2025-03-09 18:28:59,984 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:29:00,043 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:29:00,104 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:31:13,104 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FB21E50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5/source
+2025-03-09 18:31:17,132 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FB22710>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5/source
+2025-03-09 18:31:21,165 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FB64770>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5/source
+2025-03-09 18:31:29,253 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FB1D250>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5
+2025-03-09 18:31:33,296 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FAB68B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5
+2025-03-09 18:31:37,346 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002417FAB6BE0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/2707caa108535860581c07b1390934e5
+2025-03-09 18:33:25,188 - INFO - ====== WebDriver manager ======
+2025-03-09 18:33:25,743 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:33:25,838 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:33:25,886 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-09 18:35:01,631 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFABF1E50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658/source
+2025-03-09 18:35:05,668 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFABF2710>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658/source
+2025-03-09 18:35:09,713 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFAC35220>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658/source
+2025-03-09 18:35:17,794 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFABED250>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658
+2025-03-09 18:35:21,835 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFABC68B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658
+2025-03-09 18:35:25,900 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001FAFABC6BE0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente')': /session/ab243877075ded9c6431d1efa3d7a658
+2025-03-09 18:40:14,547 - INFO - ====== WebDriver manager ======
+2025-03-09 18:40:15,133 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:40:15,192 - INFO - Get LATEST chromedriver version for google-chrome
+2025-03-09 18:40:15,254 - INFO - Driver [C:\Users\duann\.wdm\drivers\chromedriver\win64\134.0.6998.35\chromedriver-win32/chromedriver.exe] found in cache
