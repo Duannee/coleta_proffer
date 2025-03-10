@@ -16,6 +16,7 @@ from selenium import webdriver
 from datetime import datetime
 from queue import Queue
 from threading import Thread
+import threading
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -30,16 +31,6 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-]
-
-
-def get_random_headers():
-    return {"User-Agent": random.choice(USER_AGENTS)}
-
 
 class Scraper:
     def __init__(self):
@@ -51,12 +42,8 @@ class Scraper:
 
         self.cnpj_requests_count = 0
         self.last_cnpj_request_time = time.time()
-        self.cnpj_cache = {}
 
-        self.session = requests.Session()
-        self.session.headers.update(get_random_headers())
-        self.cnpj_queue = Queue()
-        self.start_cnpj_worker()
+        self.cnpj_cache = {}
 
     def _initialize_driver(self):
         chrome_options = Options()
