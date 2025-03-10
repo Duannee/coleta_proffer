@@ -14,6 +14,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from datetime import datetime
+from queue import Queue
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -52,6 +53,7 @@ class Scraper:
         self.cnpj_cache = {}
 
         self.session = requests.Session()
+        self.cnpj_queue = Queue()
 
     def _initialize_driver(self):
         chrome_options = Options()
