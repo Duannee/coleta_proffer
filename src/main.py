@@ -67,6 +67,10 @@ class Scraper:
         driver = webdriver.Chrome(service=service, options=chrome_options)
         return driver
 
+    def start_cnpj_worker(self):
+        thread = Thread(target=self.process_cnpj_queue, daemon=True)
+        thread.start()
+
     def process_cnpj_queue(self):
         while True:
             cnpj, callback = self.cnpj_queue.get()
