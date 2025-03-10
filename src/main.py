@@ -75,9 +75,9 @@ class Scraper:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
         }
-
-        current_time = time.time()
-        elapsed_time = current_time - self.last_cnpj_request_time
+        with self.cnpj_lock:
+            current_time = time.time()
+            elapsed_time = current_time - self.last_cnpj_request_time
 
         if self.cnpj_requests_count >= 3:
             wait_time = max(60 - elapsed_time, 0)
