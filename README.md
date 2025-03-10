@@ -7,10 +7,10 @@
 
 - [Introdução](#introdução)
 - [Arquitetura e Tecnologias Utilizadas](#arquitetura-e-tecnologias-utilizadas)
-- [Instruções para Execução](#intruções-para-execução)
+- [Instruções para Execução](#instruções-para-execução)
 - [Coleta e Processamento dos Dados](#coleta-e-processamento-dos-dados)
 - [Desafios Encontrados e Soluções](#desafios-encontrados-e-soluções)
-- [Possíveis Melhorias Futuras](#possiveis-melhorias-futuras)
+- [Possíveis Melhorias Futuras](#possíveis-melhorias-futuras)
 - [Contato](#contato)
 
 ---
@@ -103,6 +103,7 @@ python main.py
 - Cidade, Bairro e Estado: Localização do estabelecimento
 - Data de Coleta: Momento da extração
 
+---
 
 ## Desafios Encontrados e Soluções
 1. CAPTCHA e Restrições de Acesso
@@ -118,6 +119,7 @@ python main.py
    - **Desafio**: O Selenium pode perder a referência de elementos no DOM quando a página é recarregada ou modificada dinamicamente, resultando em `StaleElementReferenceException`.
    - **Solução**: Criei uma classe `WebElementWrapper` que verifica se um elemento ainda é válido e o localiza novamente caso tenha se tornado obsoleto. Essa implementação garante que o scraper não falhe ao tentar acessar elementos que se tornaram obsoletos devido a mudanças na página.
 
+---
 
 ## Possíveis Melhorias Futuras
 - **Armazenamento em Banco de Dados**: Migrar a exportação de CSV para um banco SQL para melhor escalabilidade.
