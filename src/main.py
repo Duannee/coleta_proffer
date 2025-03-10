@@ -1,5 +1,6 @@
 import json
 import logging
+import random
 import time
 import requests
 import pandas as pd
@@ -48,8 +49,9 @@ class Scraper:
 
         self.cnpj_requests_count = 0
         self.last_cnpj_request_time = time.time()
-
         self.cnpj_cache = {}
+
+        self.session = requests.Session()
 
     def _initialize_driver(self):
         chrome_options = Options()
