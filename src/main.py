@@ -4,6 +4,9 @@ import time
 import requests
 import pandas as pd
 import os
+import sys
+from dotenv import load_dotenv
+from twocaptcha import TwoCaptcha
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
@@ -11,13 +14,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from datetime import datetime
 
-from concurrent.futures import ThreadPoolExecutor
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from stale_element import WebElementWrapper
-from anticaptchaofficial.recaptchav2proxyless import *
 
 
 logging.basicConfig(
@@ -108,61 +109,63 @@ class Scraper:
             return None
 
     def solve_recaptcha(self):
+
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+        challenge_url = "https://precodahora.ba.gov.br/challenge/"
+        self.driver.get(challenge_url)
+        time.sleep(3)
+
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//div[@class='g-recaptcha']"))
+        )
+        captcha_key = self.driver.find_element(
+            By.XPATH, "//div[@class='g-recaptcha']"
+        ).get_attribute("data-sitekey")
+
+        print(f"Captcha Site Key: {captcha_key}")
+
+        if not captcha_key:
+            raise ValueError("Failed to extract captcha site key")
+
+        load_dotenv()
+
+        api_key = os.getenv("API_KEY")
+
+        solver = TwoCaptcha(api_key)
         try:
-            challenge_url = "https://precodahora.ba.gov.br/challenge/"
-            self.driver.get(challenge_url)
-            time.sleep(3)
+            result = solver.recaptcha(sitekey=captcha_key, url=challenge_url)
+            code = result["code"]
+            print(code)
 
             WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located(
-                    (By.XPATH, "//div[@class='g-recaptcha']")
-                )
+                EC.presence_of_element_located((By.ID, "g-recaptcha-response"))
             )
-            captcha_key = self.driver.find_element(
-                By.XPATH, "//div[@class='g-recaptcha']"
-            ).get_attribute("data-sitekey")
 
-            print(f"Captcha Site Key: {captcha_key}")
+            self.driver.execute_script(
+                f"document.getElementById('g-recaptcha-response').innerHTML = '{code}';"
+            )
 
-            if not captcha_key:
-                raise ValueError("Failed to extract captcha site key")
+            self.driver.execute_script(
+                "var event = new Event('input', { bubbles: true });"
+                "document.getElementById('g-recaptcha-response').dispatchEvent(event);"
+            )
 
-            solver = recaptchaV2Proxyless()
-            solver.set_verbose(1)
-            api_key = "336489876b0bbce2d55cdfb7f330c134"
-            if not api_key:
-                raise ValueError(
-                    "AntiCaptcha API key is not defined in the environment"
-                )
-            solver.set_key(api_key)
-            solver.set_website_url(challenge_url)
-            solver.set_website_key(captcha_key)
+            self.driver.execute_script(
+                "var event = new Event('change', { bubbles: true });"
+                "document.getElementById('g-recaptcha-response').dispatchEvent(event);"
+            )
 
-            response = solver.solve_and_return_solution()
-            print(f"Captcha Response: {response}")
+            time.sleep(2)
 
-            if response != 0:
-                WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.ID, "g-recaptcha-response"))
-                )
-                self.driver.execute_script(
-                    "document.getElementById('g-recaptcha-response').value = arguments[0];"
-                    "document.getElementById('g-recaptcha-response').dispatchEvent(new Event('change'));",
-                    response,
-                )
-                time.sleep(5)
-                try:
-                    submit_button = self.driver.find_element(
-                        By.CSS_SELECTOR, ".btn.btn-lg.btn-danger.mt-2.btn-block"
-                    )
-                    submit_button.click()
-                    time.sleep(5)
-                except NoSuchElementException:
-                    print("CAPTCHA button not found")
-            else:
-                print(f"Captcha solving failed: {solver.err_string}")
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".btn.btn-lg.btn-danger.mt-2.btn-block"
+            ).click()
+
+            WebDriverWait(self.driver, 10).until(EC.url_changes(challenge_url))
+            print("CAPTCHA solved and page processed successfully!!")
+
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"Erro ao resolver CAPTCHA: {e}")
 
     def search_product(self, ean, city_code):
         self.driver.get(self.base_url)
