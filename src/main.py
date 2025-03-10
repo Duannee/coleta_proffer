@@ -71,26 +71,28 @@ class Scraper:
             print(f"CNPJ {cnpj} found in cache")
             return self.cnpj_cache[cnpj]
 
-        url = f"https://publica.cnpj.ws/cnpj/{cnpj}"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-        }
         with self.cnpj_lock:
             current_time = time.time()
             elapsed_time = current_time - self.last_cnpj_request_time
 
-        if self.cnpj_requests_count >= 3:
-            wait_time = max(60 - elapsed_time, 0)
-            print(f"Waiting {wait_time:.2f} seconds to respect the CNPJ API...")
-            time.sleep(wait_time)
-            self.cnpj_requests_count = 0
+            if self.cnpj_requests_count >= 3:
+                wait_time = max(60 - elapsed_time, 0)
+                print(f"Waiting {wait_time:.2f} seconds to respect the CNPJ API...")
+                time.sleep(wait_time)
+                self.cnpj_requests_count = 0
+                self.last_cnpj_request_time = time.time()
+            self.cnpj_requests_count += 1
+
+        url = f"https://publica.cnpj.ws/cnpj/{cnpj}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+        }
+
         try:
             response = requests.get(url, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
                 self.cnpj_cache[cnpj] = data
-                self.cnpj_requests_count += 1
-                self.last_cnpj_request_time = time.time()
                 return data
             elif response.status_code == 404:
                 print(f"CNPJ {cnpj} not found in the API")
@@ -249,6 +251,14 @@ class Scraper:
                 f"Timeout while searching for product with EAN {ean} in city {city_code}."
             )
             return None
+
+    def collect_data_for_city(self, ean, description, city_name, city_code):
+        print(f"Fetching data for EAN {ean} in {city_name}")
+        self.search_product(ean, city_code)
+        product_data = self.extract_product_data(ean, description, city_code)
+        if product_data:
+            return product_data
+        return None
 
     def collect_data(self, ean_list, description_list):
         for ean, description in zip(ean_list, description_list):
